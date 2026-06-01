@@ -1,0 +1,57 @@
+name: validator
+role: specialist
+
+model:
+  provider: google
+  name: gemini-3-pro-preview
+  temperature: 0.3
+  max_output_tokens: 8192
+  thinking_budget: 4000
+  top_p: 0.95
+  top_k: 40
+  fallback_models: []
+
+tools:
+  - name: read_file
+    timeout_ms: null
+    max_retries: null
+  - name: grep
+    timeout_ms: null
+    max_retries: null
+  - name: glob
+    timeout_ms: null
+    max_retries: null
+  - name: web_search
+    timeout_ms: null
+    max_retries: null
+  - name: web_fetch
+    timeout_ms: null
+    max_retries: null
+
+skills:
+  - core
+  - json_rules
+  - testing_qa
+  - security
+
+error_handling:
+  max_retries: null
+  retry_strategy: exponential_backoff
+  backoff_multiplier: 2
+  initial_delay_ms: 100
+  max_delay_ms: 5000
+
+memory:
+  short_term:
+    max_messages: 15
+    max_tokens: 24000
+  context_compression:
+    enabled: false
+    threshold: 0.8
+
+execution:
+  max_turns: 25
+  timeout_ms: null
+
+observability:
+  log_level: INFO

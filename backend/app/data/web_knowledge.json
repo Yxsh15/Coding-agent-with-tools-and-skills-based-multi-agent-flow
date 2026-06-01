@@ -1,0 +1,20 @@
+[
+  {
+    "id": "unified-diff",
+    "title": "Unified Diff Quick Reference",
+    "url": "https://local.agentdocs/unified-diff",
+    "body": "Unified diff changes targeted lines instead of rewriting whole files. It is efficient, smaller in token cost, and safer for autonomous editing."
+  },
+  {
+    "id": "claude-loop",
+    "title": "Master While Loop Pattern",
+    "url": "https://local.agentdocs/master-loop",
+    "body": "A coding agent can repeatedly ask the model for tool calls, execute them, and feed the results back until the model stops. The loop stays simple and model-driven."
+  },
+  {
+    "id": "agentfs",
+    "title": "AgentFS Notes",
+    "url": "https://local.agentdocs/agentfs",
+    "body": "AgentFS stores workspace state on disk so runs can be resumed and audited. It complements long-running agent workflows and keeps artifacts visible."
+  }
+]

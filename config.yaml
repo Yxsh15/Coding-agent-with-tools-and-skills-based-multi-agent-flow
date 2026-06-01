@@ -1,0 +1,32 @@
+agent:
+  name: app_builder
+  max_turns: 20
+  app_root: ./workspace
+  agents_root: ./agents
+
+model:
+  provider: google
+  name: gemini-3-pro-preview
+  temperature: 0.7
+  max_output_tokens: 8192
+  top_p: 0.95
+  top_k: 40
+
+tools:
+  - read_file
+  - write_file
+  - apply_diff
+  - grep
+  - glob
+  - bash
+  - todos
+  - web_search
+  - web_fetch
+  - invoke_agent
+
+ui:
+  stream_keepalive_ms: 400
+
+agentfs:
+  root: ./workspace
+  max_read_chars: 6000

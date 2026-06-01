@@ -1,0 +1,64 @@
+name: object_builder
+role: specialist
+
+model:
+  provider: google
+  name: gemini-3-pro-preview
+  temperature: 0.5
+  max_output_tokens: 16384
+  thinking_budget: 8000
+  top_p: 0.95
+  top_k: 40
+  fallback_models: []
+
+tools:
+  - name: read_file
+    timeout_ms: null
+    max_retries: null
+  - name: write_file
+    timeout_ms: null
+    max_retries: null
+  - name: apply_diff
+    timeout_ms: null
+    max_retries: null
+    fallback: write_file
+  - name: grep
+    timeout_ms: null
+    max_retries: null
+  - name: glob
+    timeout_ms: null
+    max_retries: null
+  - name: todos
+    timeout_ms: null
+    max_retries: null
+  - name: validate_syntax
+    timeout_ms: 10000
+    max_retries: 0
+
+skills:
+  - core
+  - json_rules
+  - app_builder
+  - error_handling
+
+error_handling:
+  max_retries: null
+  retry_strategy: exponential_backoff
+  backoff_multiplier: 2
+  initial_delay_ms: 100
+  max_delay_ms: 5000
+
+memory:
+  short_term:
+    max_messages: 20
+    max_tokens: 32000
+  context_compression:
+    enabled: false
+    threshold: 0.8
+
+execution:
+  max_turns: 16
+  timeout_ms: null
+
+observability:
+  log_level: INFO

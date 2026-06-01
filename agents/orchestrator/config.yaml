@@ -1,0 +1,82 @@
+name: orchestrator
+role: orchestrator
+
+model:
+  provider: google
+  name: gemini-3-pro-preview
+  temperature: 0.7
+  max_output_tokens: 8192
+  thinking_budget: 4000
+  top_p: 0.95
+  top_k: 40
+  fallback_models: []
+
+tools:
+  - name: read_file
+    timeout_ms: 5000
+    max_retries: 2
+  - name: write_file
+    timeout_ms: 10000
+    max_retries: 1
+  - name: apply_diff
+    timeout_ms: 5000
+    max_retries: 2
+    fallback: write_file
+  - name: grep
+    timeout_ms: 5000
+    max_retries: 1
+  - name: glob
+    timeout_ms: 5000
+    max_retries: 1
+  - name: bash
+    timeout_ms: 30000
+    max_retries: 0
+  - name: todos
+    timeout_ms: 5000
+    max_retries: 1
+  - name: web_search
+    timeout_ms: 10000
+    max_retries: 2
+  - name: web_fetch
+    timeout_ms: 10000
+    max_retries: 2
+  - name: invoke_agent
+    timeout_ms: 210000
+    max_retries: 1
+  - name: validate_workspace
+    timeout_ms: 15000
+    max_retries: 0
+  - name: validate_syntax
+    timeout_ms: 10000
+    max_retries: 0
+
+skills:
+  - core
+  - app_builder
+  - error_handling
+  - security
+
+error_handling:
+  max_retries: 3
+  retry_strategy: exponential_backoff
+  backoff_multiplier: 2
+  initial_delay_ms: 100
+  max_delay_ms: 10000
+  fallback_agent: null
+
+memory:
+  short_term:
+    max_messages: 30
+    max_tokens: 50000
+  context_compression:
+    enabled: false
+    threshold: 0.8
+
+execution:
+  max_turns: 40
+  timeout_ms: 3000000
+  max_parallel_tools: 3
+
+observability:
+  log_level: INFO
+  trace_sampling: 0.1
